@@ -196,59 +196,60 @@
     background:var(--newsprint-dark);
     overflow:hidden;
     max-height:0;
-    transition:max-height 0.45s ease;
+    transition:max-height 0.5s ease;
   }
-  .channel-card-wrap.open { max-height:900px; }
+  .channel-card-wrap.open { max-height:1200px; }
 
   .channel-card {
-    display:grid;
-    grid-template-columns:200px 1fr;
-    grid-template-rows:auto auto;
+    display:flex;
+    flex-direction:column;
     background:var(--newsprint-dark);
     border-bottom:2px solid var(--rule);
   }
 
-  /* ── Poster: true 2:3 ratio ── */
+  /* ── Poster: full-width, contain so nothing is cropped ── */
   .cc-poster {
-    grid-row:1/3;
-    width:200px;
+    width:100%;
     background:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:2px solid var(--rule);
+    min-height:180px;
+    max-height:420px;
     overflow:hidden;
-    border-right:2px solid var(--rule);
-    flex-shrink:0;
-    align-self:stretch;
+    position:relative;
   }
   .cc-poster img {
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center top;
+    width:auto;
+    max-width:100%;
+    max-height:420px;
+    object-fit:contain;
     display:block;
-    min-height:300px;
   }
   .cc-poster-ph {
     width:100%;
-    min-height:300px;
-    height:100%;
+    min-height:180px;
     display:flex; flex-direction:column;
     align-items:center; justify-content:center;
     gap:10px; font-size:56px; background:#1a1410;
+    padding:30px 0;
   }
   .cc-poster-ph span {
     font-family:'Special Elite',cursive; font-size:9px;
     color:rgba(255,255,255,0.25); letter-spacing:2px; text-transform:uppercase;
   }
 
-  /* ── Info top-right ── */
+  /* ── Info section ── */
   .cc-info {
-    padding:16px 18px 12px;
+    padding:14px 16px 12px;
     border-bottom:1px solid var(--rule);
     background:var(--newsprint);
   }
-  .cc-header { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:10px; }
+  .cc-header { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:8px; }
   .cc-title-block { flex:1; }
   .cc-channel { font-family:'Special Elite',cursive; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--rule); margin-bottom:3px; }
-  .cc-title { font-family:'Oswald',sans-serif; font-size:clamp(17px,2.4vw,26px); font-weight:700; text-transform:uppercase; color:var(--ink); line-height:1; }
+  .cc-title { font-family:'Oswald',sans-serif; font-size:clamp(18px,3vw,28px); font-weight:700; text-transform:uppercase; color:var(--ink); line-height:1; }
   .cc-tagline { font-size:11px; color:var(--ink-light); font-style:italic; margin-top:4px; line-height:1.4; }
   .cc-years { font-family:'Special Elite',cursive; font-size:11px; color:var(--rule); margin-top:5px; }
   .cc-close {
@@ -265,31 +266,65 @@
   .cc-desc.loading { color:#bbb; animation:shimmer 1.5s infinite; }
   @keyframes shimmer { 0%,100%{opacity:0.4}50%{opacity:1} }
 
-  /* ── Bottom: video + streaming ── */
+  /* ── Bottom: video + streaming stacked ── */
   .cc-bottom {
-    padding:14px 18px;
+    padding:14px 16px;
     background:var(--newsprint-dark);
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    display:flex;
+    flex-direction:column;
     gap:16px;
-    align-items:start;
   }
-  .cc-video-block {}
   .cc-video-hed { font-family:'Oswald',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ink); margin-bottom:7px; display:flex; align-items:center; gap:6px; }
   .cc-video-hed::before { content:'▶'; color:var(--red); font-size:10px; }
   .cc-video-frame { position:relative; width:100%; padding-bottom:56.25%; background:#111; overflow:hidden; }
   .cc-video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
-  .cc-video-none { font-family:'Special Elite',cursive; font-size:10px; color:var(--rule); font-style:italic; padding:14px 0; }
-  .cc-stream-block {}
-  .cc-stream-hed { font-family:'Oswald',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ink); margin-bottom:7px; display:flex; align-items:center; gap:6px; }
+  .cc-video-none { font-family:'Special Elite',cursive; font-size:10px; color:var(--rule); font-style:italic; padding:10px 0; }
+
+  /* ── WHERE TO WATCH — brand logo buttons ── */
+  .cc-stream-hed { font-family:'Oswald',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ink); margin-bottom:9px; display:flex; align-items:center; gap:6px; }
   .cc-stream-hed .live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 4px var(--green); animation:pulse 2s infinite; }
-  .stream-links { display:flex; flex-wrap:wrap; gap:6px; }
-  .stream-btn { display:flex; align-items:center; gap:5px; padding:6px 10px; text-decoration:none; border:2px solid var(--ink); font-family:'Oswald',sans-serif; font-size:11px; font-weight:700; color:var(--ink); text-transform:uppercase; letter-spacing:1px; transition:all 0.12s; background:var(--newsprint); }
-  .stream-btn:hover { background:var(--ink); color:var(--newsprint); }
-  .free-badge { font-size:7px; font-family:'Special Elite',cursive; color:var(--green); letter-spacing:1px; border:1px solid var(--green); padding:1px 3px; }
-  .sub-badge  { font-size:7px; font-family:'Special Elite',cursive; color:var(--blue); letter-spacing:1px; border:1px solid var(--blue); padding:1px 3px; }
-  .stream-btn:hover .free-badge { color:#81c784; border-color:#81c784; }
-  .stream-btn:hover .sub-badge  { color:#90b4e6; border-color:#90b4e6; }
+  .stream-links { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+
+  /* Base brand button */
+  .stream-btn {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:7px 12px; border-radius:4px;
+    text-decoration:none; font-weight:700;
+    font-size:12px; font-family:'Oswald',sans-serif;
+    letter-spacing:0.5px; transition:filter 0.15s, transform 0.1s;
+    border:none; cursor:pointer; color:#fff;
+  }
+  .stream-btn:hover { filter:brightness(1.15); transform:translateY(-1px); }
+  .stream-btn svg { flex-shrink:0; }
+  .free-tag { font-size:8px; font-family:'Special Elite',cursive; background:rgba(255,255,255,0.25); padding:1px 4px; border-radius:2px; letter-spacing:1px; }
+
+  /* Per-service brand colours */
+  .svc-netflix    { background:#e50914; }
+  .svc-prime      { background:#00a8e0; }
+  .svc-disney     { background:#113ccf; }
+  .svc-max        { background:#002be7; }
+  .svc-paramount  { background:#0064ff; }
+  .svc-peacock    { background:#000000; border:1px solid #444; }
+  .svc-hulu       { background:#1ce783; color:#000; }
+  .svc-hulu .free-tag { background:rgba(0,0,0,0.2); color:#000; }
+  .svc-tubi       { background:#fa4a0c; }
+  .svc-pluto      { background:#242424; border:1px solid #555; }
+  .svc-youtube    { background:#ff0000; }
+  .svc-freevee    { background:#00a0d2; }
+  .svc-boomerang  { background:#f5a623; color:#000; }
+  .svc-default    { background:#444; }
+
+  /* YouTube episodes search button */
+  .yt-episodes-btn {
+    display:inline-flex; align-items:center; gap:7px;
+    padding:8px 14px; border-radius:4px;
+    background:#ff0000; color:#fff;
+    text-decoration:none; font-family:'Oswald',sans-serif;
+    font-size:12px; font-weight:700; letter-spacing:0.5px;
+    transition:filter 0.15s, transform 0.1s; border:none; cursor:pointer;
+  }
+  .yt-episodes-btn:hover { filter:brightness(1.15); transform:translateY(-1px); }
+
   .stream-loading { font-family:'Special Elite',cursive; font-size:10px; color:var(--rule); display:flex; align-items:center; gap:6px; animation:shimmer 1.5s infinite; }
   .stream-none { font-family:'Special Elite',cursive; font-size:10px; color:var(--rule); font-style:italic; }
   .cc-credit { margin-top:8px; font-family:'Special Elite',cursive; font-size:9px; color:var(--rule); }
@@ -318,11 +353,9 @@
     .era-tab { min-height:80px; padding:8px 4px 8px; }
     .era-tab .tab-icons { font-size:10px; }
     .era-tab .tab-label { display:none; }
-    .channel-card { grid-template-columns:120px 1fr; }
-    .cc-poster img { min-height:180px; }
-    .cc-poster-ph { min-height:180px; font-size:36px; }
-    .cc-bottom { grid-template-columns:1fr; }
-    .cc-title { font-size:16px; }
+    .cc-poster { max-height:300px; }
+    .cc-poster img { max-height:300px; }
+    .cc-title { font-size:18px; }
   }
 </style>
 </head>
@@ -765,7 +798,7 @@ async function fetchStreaming(id){
     if(!seen[s.source_id]&&SOURCE_MAP[s.source_id]){
       seen[s.source_id]=true;
       const info=SOURCE_MAP[s.source_id];
-      result.push({n:info.n, u:s.web_url||info.u, f:s.type==='free'||info.f});
+      result.push({n:info.n, u:s.web_url||info.u, f:s.type==='free'||info.f, cls:info.cls, icon:info.icon});
     }
   });
   streamCache[id]=result; return result;
@@ -944,7 +977,7 @@ function renderEra(eraId){
     html+=`</div>`;
     html+=`<div class="channel-card-wrap" id="card-wrap-${si}">
       <div class="channel-card" id="channel-card-${si}">
-        <div class="cc-poster" id="cc-poster-${si}"><div class="cc-poster-ph">📺</div></div>
+        <div class="cc-poster" id="cc-poster-${si}"><div class="cc-poster-ph"><span>SELECT A SHOW</span></div></div>
         <div class="cc-info" id="cc-info-${si}">
           <div class="cc-header">
             <div class="cc-title-block">
@@ -966,9 +999,10 @@ function renderEra(eraId){
           <div class="cc-stream-block">
             <div class="cc-stream-hed">
               <span class="live-dot" id="cc-live-dot-${si}" style="display:none"></span>
-              WHERE TO WATCH NOW
+              WHERE TO WATCH
             </div>
             <div class="stream-links" id="cc-stream-${si}"></div>
+            <div id="cc-yt-search-${si}"></div>
             <div class="cc-note"   id="cc-note-${si}"></div>
             <div class="cc-credit" id="cc-credit-${si}"></div>
           </div>
@@ -986,13 +1020,19 @@ function renderEra(eraId){
 const tmdbIdCache={}, tmdbDataCache={}, imdbCache={}, wmIdCache={}, streamCache={};
 
 const SOURCE_MAP={
-  203:{n:'Netflix',u:'https://netflix.com',f:false},26:{n:'Amazon Prime',u:'https://amazon.com/primevideo',f:false},
-  372:{n:'Disney+',u:'https://disneyplus.com',f:false},387:{n:'Max',u:'https://max.com',f:false},
-  444:{n:'Paramount+',u:'https://paramountplus.com',f:false},389:{n:'Peacock',u:'https://peacocktv.com',f:false},
-  157:{n:'Hulu',u:'https://hulu.com',f:false},194:{n:'Tubi TV',u:'https://tubitv.com',f:true},
-  300:{n:'Pluto TV',u:'https://pluto.tv',f:true},191:{n:'YouTube Free',u:'https://youtube.com',f:true},
-  371:{n:'Boomerang',u:'https://boomerang.com',f:false},9:{n:'Amazon Freevee',u:'https://amazon.com/freevideos',f:true},
-  150:{n:'Peacock Free',u:'https://peacocktv.com',f:true},
+  203:{n:'Netflix',    u:'https://netflix.com',                    f:false, cls:'svc-netflix',   icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M5 3l5.5 9L5 21h3l3.5-6 3.5 6h3L13.5 12 19 3h-3l-4 7-4-7z"/></svg>'},
+  26: {n:'Prime',      u:'https://amazon.com/primevideo',          f:false, cls:'svc-prime',     icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>'},
+  372:{n:'Disney+',    u:'https://disneyplus.com',                 f:false, cls:'svc-disney',    icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>'},
+  387:{n:'Max',        u:'https://max.com',                        f:false, cls:'svc-max',       icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M4 6h16v12H4z M8 9v6l2-3 2 3V9 M14 9v6h4"/></svg>'},
+  444:{n:'Paramount+', u:'https://paramountplus.com',              f:false, cls:'svc-paramount', icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 3l9 18H3z"/></svg>'},
+  389:{n:'Peacock',    u:'https://peacocktv.com',                  f:false, cls:'svc-peacock',   icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>'},
+  157:{n:'Hulu',       u:'https://hulu.com',                       f:false, cls:'svc-hulu',      icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M6 4v16M6 12h6v8h6V8h-6"/></svg>'},
+  194:{n:'Tubi',       u:'https://tubitv.com',                     f:true,  cls:'svc-tubi',      icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M4 7h6v10H7V9H4zm6 0h4l4 5-4 5h-4l4-5z"/></svg>'},
+  300:{n:'Pluto TV',   u:'https://pluto.tv',                       f:true,  cls:'svc-pluto',     icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M12 6v6l4 2" stroke="#fff" stroke-width="1.5" fill="none"/></svg>'},
+  191:{n:'YouTube',    u:'https://youtube.com',                    f:true,  cls:'svc-youtube',   icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M10 8l6 4-6 4V8z"/><path d="M21.6 7.2a2.7 2.7 0 00-1.9-1.9C18 5 12 5 12 5s-6 0-7.7.4A2.7 2.7 0 002.4 7.2C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 001.9 1.9C6 19 12 19 12 19s6 0 7.7-.3a2.7 2.7 0 001.9-1.9C22 15.1 22 12 22 12s0-3.1-.4-4.8z"/></svg>'},
+  371:{n:'Boomerang',  u:'https://boomerang.com',                  f:false, cls:'svc-boomerang', icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M4 12C4 7.6 7.6 4 12 4v4l6-6-6-6v4C6.5 0 0 6.5 0 14.5c0 3 1 5.8 2.7 8l2.9-2.9A9 9 0 014 12z"/></svg>'},
+  9:  {n:'Freevee',    u:'https://amazon.com/freevideos',          f:true,  cls:'svc-freevee',   icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>'},
+  150:{n:'Peacock',    u:'https://peacocktv.com',                  f:true,  cls:'svc-peacock',   icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>'},
 };
 
 
@@ -1085,14 +1125,23 @@ async function selectShow(showId, sectionIdx){
 
   // Streaming
   const streamEl=document.getElementById(`cc-stream-${si}`);
+  const ytSearchEl=document.getElementById(`cc-yt-search-${si}`);
+
+  // Always render YouTube episodes search button
+  const ytSearchUrl=`https://www.youtube.com/results?search_query=${encodeURIComponent(displayTitle+' full episodes')}`;
+  ytSearchEl.innerHTML=`<a class="yt-episodes-btn" href="${ytSearchUrl}" target="_blank" rel="noopener" style="margin-top:10px;display:inline-flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0"><path d="M10 8l6 4-6 4V8z"/><path d="M21.6 7.2a2.7 2.7 0 00-1.9-1.9C18 5 12 5 12 5s-6 0-7.7.4A2.7 2.7 0 002.4 7.2C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 001.9 1.9C6 19 12 19 12 19s6 0 7.7-.3a2.7 2.7 0 001.9-1.9C22 15.1 22 12 22 12s0-3.1-.4-4.8z"/></svg>Find Episodes on YouTube</a>`;
+
   if(streams&&streams.length>0){
     liveDot.style.display='inline-block';
-    streamEl.innerHTML=streams.map(s=>`<a class="stream-btn" href="${s.u}" target="_blank" rel="noopener">${s.n}<span class="${s.f?'free-badge':'sub-badge'}">${s.f?'FREE':'SUB'}</span></a>`).join('');
+    streamEl.innerHTML=streams.map(s=>{
+      const freeTag=s.f?`<span class="free-tag">FREE</span>`:'';
+      return `<a class="stream-btn ${s.cls||'svc-default'}" href="${s.u}" target="_blank" rel="noopener">${s.icon||''}${s.n}${freeTag}</a>`;
+    }).join('');
   }else if(streams!==null){
     liveDot.style.display='inline-block';
     streamEl.innerHTML=`<span class="stream-none">No current US streaming found — check <a href="https://www.justwatch.com" target="_blank" rel="noopener" style="color:var(--rule)">JustWatch</a>.</span>`;
   }else{
-    streamEl.innerHTML=(show.fallback||[]).map(s=>`<a class="stream-btn" href="${s.u}" target="_blank" rel="noopener">${s.n}<span class="${s.f?'free-badge':'sub-badge'}">${s.f?'FREE':'SUB'}</span></a>`).join('');
+    streamEl.innerHTML=(show.fallback||[]).map(s=>`<a class="stream-btn svc-default" href="${s.u}" target="_blank" rel="noopener">${s.n}</a>`).join('');
   }
 }
 
