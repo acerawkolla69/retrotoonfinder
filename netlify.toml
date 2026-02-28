@@ -24,8 +24,3 @@
   to = "/.netlify/functions/youtube"
   status = 200
   force = true
-```
-
-Save, commit, push, and after it redeploys test by visiting this URL directly in your browser:
-```
-https://retrotoonfinder.netlify.app/.netlify/functions/tmdb?path=configuration
